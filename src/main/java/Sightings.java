@@ -74,4 +74,11 @@ public class Sightings implements AnimalInterface {
                 this.getLocation().equals(myAnimal.getLocation())&&
                 this.getId()==myAnimal.getId() ;
     }
+
+    public static List<Sightings> all(){
+        String sql = "SELECT * FROM sighting;";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Sightings.class);
+        }
+    }
 }

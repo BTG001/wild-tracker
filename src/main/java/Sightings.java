@@ -16,4 +16,23 @@ public class Sightings implements AnimalInterface{
         if (location.equals("")) {
             throw new IllegalArgumentException("Please enter a location mate");
         }
-}
+        this.name = name;
+        this.location = location;
+        this.animalId = animalId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public int getAnimalId() {
+        return animalId;
+    }
+
+    public int getId() {
+        return id;
+    }

@@ -3,6 +3,7 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class Animal extends AnimalAbstract  {
+    private static final String ANIMAL_TYPE = "safe";
     public Animal(String name, String age, String health, String type){
 
         if (name.equals("")) {
@@ -14,4 +15,10 @@ public class Animal extends AnimalAbstract  {
         if (health.equals("")) {
             throw new IllegalArgumentException("Please enter the health status of the animal");
         }
+        this.name = name;
+        this.age = age;
+        this.health = health;
+        this.type = ANIMAL_TYPE;
+
+    }
 }

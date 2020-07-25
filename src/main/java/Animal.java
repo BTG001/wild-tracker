@@ -21,7 +21,6 @@ public class Animal extends AnimalAbstract  {
         this.type = ANIMAL_TYPE;
 
     }
-
     @Override
     public void save(){
         try(Connection con = DB.sql2o.open()){
@@ -35,4 +34,23 @@ public class Animal extends AnimalAbstract  {
                     .getKey();
         }
     }
+    @Override
+    public boolean equals(Object otherAnimal){
+        if(!(otherAnimal instanceof Object)){
+            return false;
+        }
+        AnimalAbstract myAnimal = (AnimalAbstract) otherAnimal;
+        return this.getName().equals(myAnimal.getName())&&
+                this.getType().equals(myAnimal.getType())&&
+                this.getId()==myAnimal.getId() ;
+
+    }
+    public static List<Animal> all(){
+        String sql = "SELECT * FROM animal WHERE type='safe'";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Animal.class);
+        }
+    }
+
+
 }

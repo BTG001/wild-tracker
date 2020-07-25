@@ -3,13 +3,12 @@ import org.sql2o.Connection;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class Sightings implements AnimalInterface {
+public class Sightings implements AnimalInterface{
     private String name;
     private String location;
     private int animalId;
     private Timestamp timestamp;
     private int id;
-
     public Sightings(String name, String location, int animalId) {
         if (name.equals("")) {
             throw new IllegalArgumentException("Please enter a name mate");
@@ -41,12 +40,11 @@ public class Sightings implements AnimalInterface {
     public Timestamp getTimestamp() {
         return timestamp;
     }
-
     public AnimalAbstract getAnimal() {
         String sql = "SELECT * FROM animal WHERE id = :id";
-        try (Connection con = DB.sql2o.open()) {
+        try(Connection con = DB.sql2o.open()){
             AnimalAbstract myAnimal = con.createQuery(sql)
-                    .addParameter("id", this.animalId)
+                    .addParameter("id",this.animalId)
                     .executeAndFetchFirst(AnimalAbstract.class);
             return myAnimal;
         }
@@ -63,7 +61,6 @@ public class Sightings implements AnimalInterface {
                     .getKey();
         }
     }
-
     @Override
     public boolean equals(Object otherSighting){
         if(!(otherSighting instanceof Object)){
@@ -74,11 +71,32 @@ public class Sightings implements AnimalInterface {
                 this.getLocation().equals(myAnimal.getLocation())&&
                 this.getId()==myAnimal.getId() ;
     }
-
     public static List<Sightings> all(){
         String sql = "SELECT * FROM sighting;";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sightings.class);
         }
     }
+    public static Sightings find(int id){
+        String sql = "SELECT * FROM sighting WHERE id = :id";
+        try(Connection con = DB.sql2o.open()) {
+            Sightings sighting = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Sightings.class);
+            return sighting;
+        }
+    }
+    @Override
+    public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM sighting WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
 }
+
+
+

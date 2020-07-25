@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class DatabaseRule extends ExternalResource {
     @Override
     protected void before() {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "postgres", "Bus-242-001/2014");
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "buno", "Bruno11057");
     }
 
     @Override

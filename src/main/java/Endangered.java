@@ -19,4 +19,16 @@ public class Endangered extends  AnimalAbstract {
         this.health = health;
         this.type = ANIMAL_TYPE;
     }
+
+    @Override
+    public boolean equals(Object otherAnimal){
+        if(!(otherAnimal instanceof Object)){
+            return false;
+        }
+        AnimalAbstract myAnimal = (AnimalAbstract) otherAnimal;
+        return this.getName().equals(myAnimal.getName())&&
+                this.getType().equals(myAnimal.getType())&&
+                this.getId()==myAnimal.getId() ;
+
+    }
 }

@@ -51,4 +51,16 @@ public class Sightings implements AnimalInterface {
             return myAnimal;
         }
     }
+
+    public void save() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO sighting (name, location, animalId, timestamp) VALUES (:name, :location, :animalId, now());";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("location", this.location)
+                    .addParameter("animalId", this.animalId)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
 }

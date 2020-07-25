@@ -63,4 +63,15 @@ public class Sightings implements AnimalInterface {
                     .getKey();
         }
     }
+
+    @Override
+    public boolean equals(Object otherSighting){
+        if(!(otherSighting instanceof Object)){
+            return false;
+        }
+        Sightings myAnimal = (Sightings) otherSighting;
+        return this.getName().equals(myAnimal.getName())&&
+                this.getLocation().equals(myAnimal.getLocation())&&
+                this.getId()==myAnimal.getId() ;
+    }
 }

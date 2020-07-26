@@ -43,7 +43,7 @@ sdk install gradle
 
 * You will need Internet connection.
 
-* You need to get into the Hero-Squad Repository.
+* You need to get into the wildlife-tracker Repository.
 
 Link:-> ```https://github.com/BTG001/wild-tracker```
 
@@ -54,6 +54,21 @@ Link:-> ```https://github.com/BTG001/wild-tracker```
 * If you have all the **Pre-requisites** you can run the application.
 * Launch the app `gradle run`. The app will open on port 4567 on your browser: `localhost:4567`
 
+## Database Setup
+
+* For ubuntu users use the following in the terminal:
+ `sudo apt-get update`
+  `sudo apt-get install postgresql postgresql-contrib libpq-dev`
+* Launch postgreSQL
+* Update Server password
+    `ALTER USER postgres WITH PASSWORD '12345';`
+* Dropping the database 
+    `cd src/main/resources/db`
+    `run psql -U (user) < drop.sql`
+* Creating database 
+`cd src/main/resources/db`
+ `run psql -U (user) < create.sql`
+ 
 ## Technologies Used
 
 * **[Java](https://java.com/en/download/) - source language.**

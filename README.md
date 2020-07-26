@@ -68,7 +68,7 @@ Link:-> ```https://github.com/BTG001/wild-tracker```
 * Creating database 
 `cd src/main/resources/db`
  `run psql -U (user) < create.sql`
- 
+* Make necessary changes to the `user` and `password`
 ## Technologies Used
 
 * **[Java](https://java.com/en/download/) - source language.**
